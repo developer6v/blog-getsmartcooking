@@ -14,6 +14,12 @@ const CLUSTERS = [
   { value: "recipe", label: "Receita Thermomix" },
 ];
 
+const TARGET_MARKETS = [
+  { value: "us-pt", label: "EUA - Português (brasileiros imigrantes)" },
+  { value: "us-es", label: "EUA - Espanhol (hispanos)" },
+  { value: "us-en", label: "EUA - Inglês (americanos nativos)" },
+];
+
 const CTA_TEMPLATES = [
   {
     name: "CTAWhatsAppInline",
@@ -55,7 +61,10 @@ const CTA_TEMPLATES = [
   },
 ];
 
-const buildBlogCollection = (locale: "en" | "es" | "pt") => ({
+const buildBlogCollection = (
+  locale: "en" | "es" | "pt",
+  defaultMarket: "us-en" | "us-es" | "us-pt"
+) => ({
   name: `blog_${locale}`,
   label: `Blog ${locale.toUpperCase()}`,
   path: `src/content/blog/${locale}`,
@@ -87,7 +96,24 @@ const buildBlogCollection = (locale: "en" | "es" | "pt") => ({
       name: "slug",
       label: "Slug (URL)",
       required: true,
-      description: "Ex: thermomix-vs-vitamix. Sem espaços, sem acentos.",
+      description:
+        "Use a keyword NATIVA deste idioma. Ex (PT): thermomix-vale-a-pena-nos-eua. Sem espaços, sem acentos.",
+    },
+    {
+      type: "string",
+      name: "focusKeyword",
+      label: "Keyword foco (interno)",
+      description:
+        "A keyword principal que este post está atacando neste idioma. Para tracking. Ex: 'thermomix vale a pena nos estados unidos'",
+    },
+    {
+      type: "string",
+      name: "targetMarket",
+      label: "Mercado-alvo",
+      options: TARGET_MARKETS,
+      ui: {
+        defaultItem: defaultMarket,
+      },
     },
     {
       type: "datetime",
@@ -138,10 +164,9 @@ const buildBlogCollection = (locale: "en" | "es" | "pt") => ({
     {
       type: "string",
       name: "translationKey",
-      label: "Chave de tradução (hreflang)",
-      required: true,
+      label: "Chave de equivalência entre idiomas (hreflang)",
       description:
-        "Use a MESMA chave nas 3 versões do mesmo post. Ex: thermomix-vs-vitamix",
+        "OPCIONAL. Use a MESMA chave nos posts equivalentes em outros idiomas (ex: 'thermomix-vs-vitamix'). Deixe em branco se este post for exclusivo deste idioma (ex: post para brasileiros nos EUA sem equivalente em outros idiomas).",
     },
     {
       type: "boolean",
@@ -154,7 +179,7 @@ const buildBlogCollection = (locale: "en" | "es" | "pt") => ({
       name: "faq",
       label: "FAQ (perguntas e respostas)",
       description:
-        "Aparecem como rich result no Google. Recomendado em posts de comparação.",
+        "Aparecem como rich result no Google. Use perguntas REAIS que pessoas deste idioma fazem (do AlsoAsked, fóruns, etc).",
       list: true,
       ui: {
         itemProps: (item: { question?: string }) => ({
@@ -231,9 +256,9 @@ export default defineConfig({
 
   schema: {
     collections: [
-      buildBlogCollection("pt"),
-      buildBlogCollection("es"),
-      buildBlogCollection("en"),
+      buildBlogCollection("pt", "us-pt"),
+      buildBlogCollection("es", "us-es"),
+      buildBlogCollection("en", "us-en"),
     ],
   },
 

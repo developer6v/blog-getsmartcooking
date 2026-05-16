@@ -18,8 +18,15 @@ const blogSchema = z.object({
     "recipe",
   ]),
   tags: z.array(z.string()).optional(),
-  translationKey: z.string(),
+  // translationKey: OPCIONAL. Use a MESMA chave nos posts equivalentes
+  // em outros idiomas para o hreflang ligar eles. Deixe em branco se o
+  // post for exclusivo deste idioma (ex: post focado em brasileiros nos EUA).
+  translationKey: z.string().optional(),
   draft: z.boolean().default(false),
+  // focusKeyword: keyword principal NATIVA deste idioma. Para tracking interno.
+  focusKeyword: z.string().optional(),
+  // targetMarket: mercado-alvo específico (todos nos EUA).
+  targetMarket: z.enum(["us-pt", "us-es", "us-en"]).optional(),
   faq: z
     .array(
       z.object({
