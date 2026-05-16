@@ -8,22 +8,45 @@
   jobs:
     deploy:
       runs-on: ubuntu-latest
-      defaults:
-        run:
-          working-directory: getsmartcooking-blog
       steps:
         - name: Checkout
           uses: actions/checkout@v4
+
+        - name: Locate project root
+          id: locate
+          run: |
+            PKG=$(find . -name package.json -not -path "*/node_modules/*" -not -path "./.git/*" | head -1)
+            if [ -z "$PKG" ]; then
+              echo "package.json not found"
+              exit 1
+            fi
+            DIR=$(dirname "$PKG")
+            echo "dir=$DIR" >> $GITHUB_OUTPUT
+            echo "Project dir: $DIR"
+            ls -la "$DIR"
+            if [ ! -d "$DIR/tina" ]; then
+              echo "tina folder not found at $DIR"
+              exit 1
+            fi
+            ls -la "$DIR/tina"
 
         - name: Setup Node
           uses: actions/setup-node@v4
           with:
             node-version: "20"
 
+        - name: Cache node_modules
+          uses: actions/cache@v4
+          with:
+            path: "${{ steps.locate.outputs.dir }}/node_modules"
+            key: node-modules-${{ runner.os }}-${{ hashFiles(format('{0}/package.json', steps.locate.outputs.dir)) }}
+
         - name: Install dependencies
-          run: npm install
+          working-directory: "${{ steps.locate.outputs.dir }}"
+          run: npm install --prefer-offline --no-audit --no-fund
 
         - name: Build
+          working-directory: "${{ steps.locate.outputs.dir }}"
           env:
             NEXT_PUBLIC_TINA_CLIENT_ID: ${{ secrets.NEXT_PUBLIC_TINA_CLIENT_ID }}
             TINA_TOKEN: ${{ secrets.TINA_TOKEN }}
@@ -35,7 +58,7 @@
             server: ${{ secrets.FTP_HOST }}
             username: ${{ secrets.FTP_USERNAME }}
             password: ${{ secrets.FTP_PASSWORD }}
-            local-dir: ./getsmartcooking-blog/dist/
+            local-dir: "${{ steps.locate.outputs.dir }}/dist/"
             server-dir: ./
             protocol: ftps
             port: 21
