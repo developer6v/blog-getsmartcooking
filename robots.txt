@@ -1,8 +1,0 @@
-User-agent: *
-Allow: /
-
-# Block the silent redirect page from search results (it has no content)
-Disallow: /index.html
-
-# Sitemap location
-Sitemap: https://getsmartcooking.com/sitemap.xml

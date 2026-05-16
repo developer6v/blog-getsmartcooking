@@ -1,0 +1,21 @@
+---
+export interface Props {
+  items: Array<{ name: string; url: string }>;
+}
+
+const { items } = Astro.props;
+const SITE = "https://getsmartcooking.com";
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: items.map((item, idx) => ({
+    "@type": "ListItem",
+    position: idx + 1,
+    name: item.name,
+    item: item.url.startsWith("http") ? item.url : `${SITE}${item.url}`,
+  })),
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(schema)} />

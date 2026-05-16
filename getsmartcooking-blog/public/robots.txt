@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+# Bloquear área administrativa
+Disallow: /admin/
+Disallow: /api/
+
+# Sitemap principal
+Sitemap: https://getsmartcooking.com/sitemap-index.xml

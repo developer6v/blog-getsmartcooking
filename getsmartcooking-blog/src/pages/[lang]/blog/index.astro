@@ -1,0 +1,35 @@
+---
+import BlogList from "~/layouts/BlogList.astro";
+import { LOCALES, getPostsByLocale, type Locale } from "~/lib/i18n";
+
+export async function getStaticPaths() {
+  return LOCALES.map((lang) => ({ params: { lang } }));
+}
+
+const { lang } = Astro.params;
+const locale = lang as Locale;
+
+const posts = await getPostsByLocale(locale);
+
+const titles = {
+  en: "Get Smart Cooking Blog",
+  es: "Blog de Get Smart Cooking",
+  pt: "Blog do Get Smart Cooking",
+};
+
+const descriptions = {
+  en: "Honest articles about the Thermomix in the USA: comparisons, pricing, financing, and how to become a Thermomix Advisor.",
+  es: "Artículos honestos sobre la Thermomix en EE.UU.: comparaciones, precios, financiamiento y cómo convertirse en Thermomix Advisor.",
+  pt: "Artigos honestos sobre o Thermomix nos EUA: comparações, preços, financiamento e como ser uma Thermomix Advisor.",
+};
+
+const SITE = "https://getsmartcooking.com";
+---
+
+<BlogList
+  posts={posts}
+  locale={locale}
+  title={titles[locale]}
+  description={descriptions[locale]}
+  canonical={`${SITE}/${locale}/blog/`}
+/>

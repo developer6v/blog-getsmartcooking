@@ -1,0 +1,31 @@
+---
+import BlogPost from "~/layouts/BlogPost.astro";
+import CTAWhatsApp from "~/components/CTAWhatsApp.astro";
+import { LOCALES, getPostsByLocale, type Locale } from "~/lib/i18n";
+
+export async function getStaticPaths() {
+  const paths = [];
+
+  for (const lang of LOCALES) {
+    const posts = await getPostsByLocale(lang);
+    for (const post of posts) {
+      paths.push({
+        params: { lang, slug: post.data.slug },
+        props: { post },
+      });
+    }
+  }
+
+  return paths;
+}
+
+const { lang } = Astro.params;
+const { post } = Astro.props;
+const locale = lang as Locale;
+
+const { Content } = await post.render();
+---
+
+<BlogPost frontmatter={post.data} locale={locale}>
+  <Content components={{ CTAWhatsAppInline: CTAWhatsApp, CTAWhatsAppBanner: CTAWhatsApp, CTAWhatsAppFinal: CTAWhatsApp }} />
+</BlogPost>

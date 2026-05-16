@@ -1,0 +1,111 @@
+---
+export interface Props {
+  title: string;
+  description: string;
+  canonical: string;
+  image?: string;
+  imageAlt?: string;
+  type?: "website" | "article";
+  publishDate?: Date;
+  updatedDate?: Date;
+  author?: string;
+  locale: "en" | "es" | "pt";
+  alternateLanguages?: {
+    en?: string;
+    es?: string;
+    pt?: string;
+  };
+  noindex?: boolean;
+}
+
+const {
+  title,
+  description,
+  canonical,
+  image,
+  imageAlt,
+  type = "website",
+  publishDate,
+  updatedDate,
+  author,
+  locale,
+  alternateLanguages,
+  noindex = false,
+} = Astro.props;
+
+const SITE = "https://getsmartcooking.com";
+const fullImage = image
+  ? image.startsWith("http")
+    ? image
+    : `${SITE}${image}`
+  : `${SITE}/og-default.jpg`;
+
+const localeMap = {
+  en: "en_US",
+  es: "es_US",
+  pt: "pt_BR",
+};
+
+const ogLocale = localeMap[locale];
+---
+
+<title>{title}</title>
+<meta name="description" content={description} />
+<meta name="author" content={author || "Natascha Costa"} />
+
+<link rel="canonical" href={canonical} />
+
+{noindex && <meta name="robots" content="noindex, nofollow" />}
+{!noindex && <meta name="robots" content="index, follow, max-image-preview:large" />}
+
+<!-- Hreflang -->
+{
+  alternateLanguages?.en && (
+    <link rel="alternate" hreflang="en" href={`${SITE}${alternateLanguages.en}`} />
+  )
+}
+{
+  alternateLanguages?.es && (
+    <link rel="alternate" hreflang="es" href={`${SITE}${alternateLanguages.es}`} />
+  )
+}
+{
+  alternateLanguages?.pt && (
+    <link rel="alternate" hreflang="pt" href={`${SITE}${alternateLanguages.pt}`} />
+  )
+}
+<link rel="alternate" hreflang="x-default" href={`${SITE}/en/`} />
+
+<!-- Open Graph -->
+<meta property="og:type" content={type} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={canonical} />
+<meta property="og:image" content={fullImage} />
+{imageAlt && <meta property="og:image:alt" content={imageAlt} />}
+<meta property="og:locale" content={ogLocale} />
+<meta property="og:site_name" content="Get Smart Cooking" />
+
+{
+  type === "article" && publishDate && (
+    <meta property="article:published_time" content={publishDate.toISOString()} />
+  )
+}
+{
+  type === "article" && updatedDate && (
+    <meta property="article:modified_time" content={updatedDate.toISOString()} />
+  )
+}
+{type === "article" && author && <meta property="article:author" content={author} />}
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={fullImage} />
+{imageAlt && <meta name="twitter:image:alt" content={imageAlt} />}
+
+<!-- Viewport e charset -->
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />

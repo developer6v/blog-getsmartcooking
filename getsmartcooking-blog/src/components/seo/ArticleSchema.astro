@@ -1,0 +1,63 @@
+---
+export interface Props {
+  title: string;
+  description: string;
+  url: string;
+  image: string;
+  imageAlt: string;
+  publishDate: Date;
+  updatedDate?: Date;
+  author: string;
+  locale: "en" | "es" | "pt";
+}
+
+const {
+  title,
+  description,
+  url,
+  image,
+  imageAlt,
+  publishDate,
+  updatedDate,
+  author,
+  locale,
+} = Astro.props;
+
+const SITE = "https://getsmartcooking.com";
+const fullImage = image.startsWith("http") ? image : `${SITE}${image}`;
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  headline: title,
+  description: description,
+  image: {
+    "@type": "ImageObject",
+    url: fullImage,
+    caption: imageAlt,
+  },
+  datePublished: publishDate.toISOString(),
+  dateModified: (updatedDate || publishDate).toISOString(),
+  author: {
+    "@type": "Person",
+    name: author,
+    url: `${SITE}/${locale}/`,
+  },
+  publisher: {
+    "@type": "Organization",
+    name: "Get Smart Cooking",
+    url: SITE,
+    logo: {
+      "@type": "ImageObject",
+      url: `${SITE}/logo.png`,
+    },
+  },
+  mainEntityOfPage: {
+    "@type": "WebPage",
+    "@id": url,
+  },
+  inLanguage: locale,
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(schema)} />

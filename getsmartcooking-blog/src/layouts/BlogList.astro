@@ -1,0 +1,265 @@
+---
+import SEOHead from "~/components/seo/SEOHead.astro";
+import BreadcrumbSchema from "~/components/seo/BreadcrumbSchema.astro";
+import { formatDate } from "~/lib/utils";
+import { CLUSTER_LABELS, type Locale } from "~/lib/i18n";
+
+export interface Props {
+  posts: any[];
+  locale: Locale;
+  title: string;
+  description: string;
+  canonical: string;
+  cluster?: string;
+}
+
+const { posts, locale, title, description, canonical, cluster } = Astro.props;
+
+const SITE = "https://getsmartcooking.com";
+
+const labels = {
+  en: {
+    home: "Home",
+    blog: "Blog",
+    readMore: "Read more →",
+    noPostsYet: "Coming soon. New articles every week.",
+  },
+  es: {
+    home: "Inicio",
+    blog: "Blog",
+    readMore: "Leer más →",
+    noPostsYet: "Próximamente. Nuevos artículos cada semana.",
+  },
+  pt: {
+    home: "Início",
+    blog: "Blog",
+    readMore: "Ler mais →",
+    noPostsYet: "Em breve. Novos artigos toda semana.",
+  },
+};
+
+const t = labels[locale];
+
+const breadcrumbItems = [
+  { name: t.home, url: `/${locale}/` },
+  { name: t.blog, url: `/${locale}/blog/` },
+];
+
+if (cluster) {
+  breadcrumbItems.push({
+    name: CLUSTER_LABELS[cluster][locale],
+    url: canonical,
+  });
+}
+---
+
+<!DOCTYPE html>
+<html lang={locale}>
+  <head>
+    <SEOHead
+      title={`${title} | Get Smart Cooking`}
+      description={description}
+      canonical={canonical}
+      locale={locale}
+    />
+    <BreadcrumbSchema items={breadcrumbItems} />
+  </head>
+  <body>
+    <!-- <Header locale={locale} /> -->
+
+    <main class="blog-list">
+      <header class="list-header">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href={`/${locale}/`}>{t.home}</a>
+          <span> / </span>
+          {
+            cluster ? (
+              <>
+                <a href={`/${locale}/blog/`}>{t.blog}</a>
+                <span> / </span>
+                <span aria-current="page">{CLUSTER_LABELS[cluster][locale]}</span>
+              </>
+            ) : (
+              <span aria-current="page">{t.blog}</span>
+            )
+          }
+        </nav>
+
+        <h1 class="list-title">{title}</h1>
+        <p class="list-description">{description}</p>
+      </header>
+
+      {
+        posts.length === 0 ? (
+          <p class="empty-state">{t.noPostsYet}</p>
+        ) : (
+          <div class="posts-grid">
+            {posts.map((post) => (
+              <article class="post-card">
+                <a href={`/${locale}/blog/${post.data.slug}/`} class="post-card-link">
+                  <img
+                    src={post.data.heroImage}
+                    alt={post.data.heroImageAlt}
+                    class="post-card-image"
+                    loading="lazy"
+                  />
+                  <div class="post-card-content">
+                    <span class="post-card-cluster">
+                      {CLUSTER_LABELS[post.data.cluster][locale]}
+                    </span>
+                    <h2 class="post-card-title">{post.data.title}</h2>
+                    <p class="post-card-description">{post.data.description}</p>
+                    <div class="post-card-meta">
+                      <time datetime={post.data.publishDate.toISOString()}>
+                        {formatDate(post.data.publishDate, locale)}
+                      </time>
+                      <span class="post-card-readmore">{t.readMore}</span>
+                    </div>
+                  </div>
+                </a>
+              </article>
+            ))}
+          </div>
+        )
+      }
+    </main>
+
+    <!-- <Footer locale={locale} /> -->
+
+    <style>
+      .blog-list {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 2rem 1.25rem;
+      }
+
+      .list-header {
+        margin-bottom: 3rem;
+        text-align: center;
+      }
+
+      .breadcrumb {
+        font-size: 0.875rem;
+        color: #6b7280;
+        margin-bottom: 1.5rem;
+        text-align: left;
+      }
+
+      .breadcrumb a {
+        color: #6b7280;
+        text-decoration: none;
+      }
+
+      .breadcrumb a:hover {
+        text-decoration: underline;
+      }
+
+      .list-title {
+        font-size: 2.5rem;
+        font-weight: 800;
+        margin: 0 0 1rem 0;
+      }
+
+      .list-description {
+        font-size: 1.125rem;
+        color: #6b7280;
+        max-width: 640px;
+        margin: 0 auto;
+      }
+
+      .posts-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
+      @media (min-width: 640px) {
+        .posts-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      @media (min-width: 1024px) {
+        .posts-grid {
+          grid-template-columns: repeat(3, 1fr);
+        }
+      }
+
+      .post-card {
+        background: white;
+        border: 1px solid #e5e7eb;
+        border-radius: 0.75rem;
+        overflow: hidden;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+      }
+
+      .post-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+      }
+
+      .post-card-link {
+        display: block;
+        text-decoration: none;
+        color: inherit;
+      }
+
+      .post-card-image {
+        width: 100%;
+        aspect-ratio: 16 / 9;
+        object-fit: cover;
+      }
+
+      .post-card-content {
+        padding: 1.5rem;
+      }
+
+      .post-card-cluster {
+        display: inline-block;
+        font-size: 0.75rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        color: #128c7e;
+        margin-bottom: 0.75rem;
+      }
+
+      .post-card-title {
+        font-size: 1.25rem;
+        font-weight: 700;
+        margin: 0 0 0.75rem 0;
+        line-height: 1.3;
+      }
+
+      .post-card-description {
+        color: #6b7280;
+        margin: 0 0 1rem 0;
+        line-height: 1.5;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+
+      .post-card-meta {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 0.875rem;
+        color: #6b7280;
+      }
+
+      .post-card-readmore {
+        color: #128c7e;
+        font-weight: 600;
+      }
+
+      .empty-state {
+        text-align: center;
+        padding: 4rem 1rem;
+        color: #6b7280;
+        font-size: 1.125rem;
+      }
+    </style>
+  </body>
+</html>

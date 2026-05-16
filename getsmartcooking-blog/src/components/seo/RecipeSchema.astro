@@ -1,0 +1,64 @@
+---
+export interface Props {
+  title: string;
+  description: string;
+  image: string;
+  author: string;
+  publishDate: Date;
+  recipeData: {
+    prepTime?: string;
+    cookTime?: string;
+    totalTime?: string;
+    recipeYield?: string;
+    recipeCategory?: string;
+    recipeCuisine?: string;
+    ingredients?: string[];
+    instructions?: string[];
+    calories?: number;
+  };
+}
+
+const { title, description, image, author, publishDate, recipeData } = Astro.props;
+
+const SITE = "https://getsmartcooking.com";
+const fullImage = image.startsWith("http") ? image : `${SITE}${image}`;
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "Recipe",
+  name: title,
+  description: description,
+  image: fullImage,
+  author: {
+    "@type": "Person",
+    name: author,
+  },
+  datePublished: publishDate.toISOString(),
+  prepTime: recipeData.prepTime,
+  cookTime: recipeData.cookTime,
+  totalTime: recipeData.totalTime,
+  recipeYield: recipeData.recipeYield,
+  recipeCategory: recipeData.recipeCategory,
+  recipeCuisine: recipeData.recipeCuisine,
+  recipeIngredient: recipeData.ingredients,
+  recipeInstructions: recipeData.instructions?.map((step, idx) => ({
+    "@type": "HowToStep",
+    position: idx + 1,
+    text: step,
+  })),
+  nutrition: recipeData.calories
+    ? {
+        "@type": "NutritionInformation",
+        calories: `${recipeData.calories} calories`,
+      }
+    : undefined,
+  keywords: "thermomix, " + (recipeData.recipeCategory || "").toLowerCase(),
+};
+
+// Limpa campos undefined antes de renderizar
+const cleanSchema = Object.fromEntries(
+  Object.entries(schema).filter(([_, v]) => v !== undefined)
+);
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(cleanSchema)} />
