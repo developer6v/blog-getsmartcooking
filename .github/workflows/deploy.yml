@@ -1,5 +1,4 @@
   name: Build and Deploy to FTP
-
   on:
     push:
       branches: [main]
@@ -12,23 +11,22 @@
         - name: Checkout
           uses: actions/checkout@v4
 
-        - name: Locate project root
+        - name: Prepare project
           id: locate
           run: |
-            PKG=$(find . -name package.json -not -path "*/node_modules/*" -not -path "./.git/*" | head -1)
-            if [ -z "$PKG" ]; then
-              echo "package.json not found"
+            TINA_CFG=$(find . -path "*/tina/config.ts" -not -path "*/node_modules/*" -not -path "./.git/*" | head -1)
+            if [ -z "$TINA_CFG" ]; then
+              echo "tina/config.ts not found in repo"
               exit 1
             fi
-            DIR=$(dirname "$PKG")
-            echo "dir=$DIR" >> $GITHUB_OUTPUT
+            DIR=$(dirname "$(dirname "$TINA_CFG")")
             echo "Project dir: $DIR"
-            ls -la "$DIR"
-            if [ ! -d "$DIR/tina" ]; then
-              echo "tina folder not found at $DIR"
-              exit 1
+            if [ ! -f "$DIR/package.json" ] && [ -f "package.json" ]; then
+              echo "Copying root package.json into $DIR"
+              cp package.json "$DIR/package.json"
             fi
-            ls -la "$DIR/tina"
+            echo "dir=$DIR" >> $GITHUB_OUTPUT
+            ls -la "$DIR"
 
         - name: Setup Node
           uses: actions/setup-node@v4
