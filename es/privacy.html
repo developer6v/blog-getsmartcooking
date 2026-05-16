@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Política de Privacidad, Get Smart Cooking</title>
+  <meta name="description" content="Cómo Get Smart Cooking recopila, usa y protege tu información.">
+  <meta name="robots" content="index, follow">
+
+  <link rel="alternate" hreflang="en" href="https://getsmartcooking.com/en/privacy">
+  <link rel="alternate" hreflang="es" href="https://getsmartcooking.com/es/privacy">
+  <link rel="alternate" hreflang="pt" href="https://getsmartcooking.com/pt/privacy">
+  <link rel="canonical" href="https://getsmartcooking.com/es/privacy">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #F5EFE6;
+      --bg-warm: #EDE4D3;
+      --paper: #FFFFFF;
+      --ink: #1A1612;
+      --ink-soft: #4A4744;
+      --ink-muted: #8B7B68;
+      --clay: #C66B3D;
+      --line: #D9CFC1;
+      --wa: #25D366;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.65;
+      font-weight: 400;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    .display {
+      font-family: 'Fraunces', Georgia, serif;
+      font-variation-settings: 'opsz' 144, 'SOFT' 50;
+      font-weight: 400;
+      letter-spacing: -0.025em;
+      line-height: 1.05;
+    }
+
+    .container { max-width: 760px; margin: 0 auto; padding: 0 24px; }
+
+    .nav {
+      padding: 24px;
+      border-bottom: 1px solid var(--line);
+      background: rgba(245,239,230,0.92);
+      backdrop-filter: blur(12px);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+    .nav-inner {
+      max-width: 1240px;
+      margin: 0 auto;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .nav-logo {
+      font-family: 'Fraunces', serif;
+      font-style: italic;
+      font-weight: 400;
+      font-size: 1.25rem;
+      color: var(--ink);
+      letter-spacing: -0.01em;
+      text-decoration: none;
+    }
+    .nav-logo span { color: var(--clay); }
+
+    .nav-right { display: flex; align-items: center; gap: 24px; }
+    .lang-toggle { display: inline-flex; align-items: center; gap: 4px; font-size: 0.78rem; letter-spacing: 0.1em; font-weight: 500; }
+    .lang-toggle a { color: var(--ink-muted); text-decoration: none; padding: 4px 6px; transition: color .2s; }
+    .lang-toggle a.active { color: var(--clay); }
+    .lang-toggle a:hover { color: var(--ink); }
+    .lang-toggle span { color: var(--ink-muted); opacity: 0.4; }
+
+    .nav-back {
+      font-size: 0.88rem;
+      color: var(--ink-soft);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: color .2s;
+    }
+    .nav-back:hover { color: var(--clay); }
+
+    .page-head { padding: 80px 0 60px; border-bottom: 1px solid var(--line); margin-bottom: 64px; }
+    .eyebrow {
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--clay);
+      margin-bottom: 20px;
+      display: block;
+    }
+    .page-head h1 { font-size: clamp(2.4rem, 5vw, 3.6rem); margin-bottom: 22px; }
+    .page-head h1 em { font-style: italic; color: var(--clay); font-variation-settings: 'opsz' 144, 'SOFT' 100; }
+    .page-head p { font-size: 1.1rem; color: var(--ink-soft); max-width: 60ch; }
+    .effective { margin-top: 28px; font-size: 0.88rem; color: var(--ink-muted); font-family: 'Fraunces', serif; font-style: italic; }
+
+    .toc {
+      background: var(--paper);
+      border-radius: 4px;
+      padding: 32px 36px;
+      margin-bottom: 64px;
+      box-shadow: 0 1px 0 var(--line);
+    }
+    .toc h2 {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+      margin-bottom: 18px;
+      font-weight: 500;
+    }
+    .toc ol { list-style: none; counter-reset: toc; column-count: 2; column-gap: 32px; }
+    @media (max-width: 600px) { .toc ol { column-count: 1; } }
+    .toc li { counter-increment: toc; padding: 6px 0; break-inside: avoid; }
+    .toc li::before {
+      content: counter(toc, decimal-leading-zero);
+      font-family: 'Fraunces', serif;
+      font-style: italic;
+      color: var(--clay);
+      margin-right: 10px;
+      font-size: 0.85rem;
+    }
+    .toc a { color: var(--ink); text-decoration: none; font-size: 0.95rem; transition: color .2s; }
+    .toc a:hover { color: var(--clay); }
+
+    .content section { margin-bottom: 64px; }
+    .content h2 {
+      font-family: 'Fraunces', serif;
+      font-weight: 400;
+      font-size: 1.85rem;
+      letter-spacing: -0.015em;
+      margin-bottom: 24px;
+      padding-top: 12px;
+    }
+    .content h2 .num {
+      font-style: italic;
+      color: var(--clay);
+      margin-right: 12px;
+      font-size: 1.1rem;
+      vertical-align: 4px;
+    }
+    .content h3 {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--ink);
+      margin: 28px 0 12px;
+      letter-spacing: -0.005em;
+    }
+    .content p { color: var(--ink-soft); margin-bottom: 18px; font-size: 1rem; }
+    .content p strong { color: var(--ink); font-weight: 500; }
+    .content ul { list-style: none; margin: 8px 0 22px; }
+    .content ul li { padding: 6px 0 6px 22px; position: relative; color: var(--ink-soft); font-size: 0.98rem; }
+    .content ul li::before { content: ''; position: absolute; left: 0; top: 16px; width: 8px; height: 1px; background: var(--clay); }
+    .content a { color: var(--clay); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; }
+    .content a:hover { color: var(--ink); }
+
+    .callout {
+      background: var(--bg-warm);
+      border-left: 2px solid var(--clay);
+      padding: 22px 26px;
+      margin: 24px 0;
+      border-radius: 0 4px 4px 0;
+    }
+    .callout p { margin-bottom: 0; font-size: 0.95rem; }
+    .callout strong {
+      font-family: 'Fraunces', serif;
+      font-style: italic;
+      color: var(--clay);
+      font-weight: 400;
+      font-size: 1.05rem;
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    .contact-box {
+      background: var(--ink);
+      color: #F5EFE6;
+      padding: 48px 40px;
+      border-radius: 4px;
+      margin: 64px 0;
+      text-align: center;
+    }
+    .contact-box h2 { color: #F5EFE6; font-family: 'Fraunces', serif; font-weight: 400; font-size: 1.85rem; margin-bottom: 16px; }
+    .contact-box h2 em { font-style: italic; color: #E89D74; }
+    .contact-box p { color: rgba(245,239,230,0.75); margin-bottom: 24px; max-width: 48ch; margin-left: auto; margin-right: auto; }
+    .contact-email {
+      display: inline-block;
+      padding: 14px 28px;
+      background: var(--clay);
+      color: white;
+      text-decoration: none;
+      border-radius: 999px;
+      font-weight: 500;
+      transition: background .2s ease, transform .2s ease;
+    }
+    .contact-email:hover { background: #A0522D; transform: translateY(-1px); }
+
+    footer {
+      background: var(--ink);
+      color: rgba(245,239,230,0.65);
+      padding: 56px 24px 40px;
+      font-size: 0.88rem;
+    }
+    .foot-inner {
+      max-width: 1240px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .foot-inner a {
+      color: rgba(245,239,230,0.75);
+      text-decoration: none;
+      margin-left: 18px;
+      transition: color .2s;
+    }
+    .foot-inner a:first-child { margin-left: 0; }
+    .foot-inner a:hover { color: #E89D74; }
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="/es/" class="nav-logo">get smart <span>cooking</span></a>
+      <div class="nav-right">
+        <div class="lang-toggle">
+          <a href="/en/privacy">EN</a>
+          <span>/</span>
+          <a href="/es/privacy" class="active">ES</a>
+          <span>/</span>
+          <a href="/pt/privacy">PT</a>
+        </div>
+        <a href="/es/" class="nav-back">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+          Volver al inicio
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="page-head">
+    <div class="container">
+      <span class="eyebrow">Legal</span>
+      <h1 class="display">Política de <em>Privacidad</em></h1>
+      <p>Esta página explica qué información recopilamos cuando visitas getsmartcooking.com, por qué la recopilamos y qué opciones tienes. Escrita en lenguaje claro. Sin trucos.</p>
+      <div class="effective">Fecha de vigencia: 15 de mayo de 2026</div>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <nav class="toc">
+      <h2>Contenido de esta política</h2>
+      <ol>
+        <li><a href="#quienes-somos">Quiénes somos</a></li>
+        <li><a href="#que-recopilamos">Qué recopilamos</a></li>
+        <li><a href="#como-usamos">Cómo la usamos</a></li>
+        <li><a href="#cookies">Cookies y rastreo</a></li>
+        <li><a href="#terceros">Servicios de terceros</a></li>
+        <li><a href="#whatsapp">WhatsApp y Bella</a></li>
+        <li><a href="#retencion">Cuánto tiempo guardamos los datos</a></li>
+        <li><a href="#derechos">Tus derechos</a></li>
+        <li><a href="#menores">Privacidad de menores</a></li>
+        <li><a href="#cambios">Cambios a esta política</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ol>
+    </nav>
+
+    <article class="content">
+
+      <section id="quienes-somos">
+        <h2><span class="num">01</span>Quiénes somos</h2>
+        <p>Get Smart Cooking es un sitio web operado por <strong>Costa Launch LLC</strong>, una sociedad de responsabilidad limitada de Texas con domicilio en <strong>2001 Timberloch Place, The Woodlands, Texas 77380</strong>. El sitio respalda las actividades de <strong>Natascha Costa</strong>, Asesora Independiente de Thermomix autorizada por Vorwerk USA. No estamos afiliados a la comunicación corporativa de Vorwerk. Operamos este sitio para ayudar a cocineros de casa a conocer la Thermomix y decidir si encaja en su cocina.</p>
+        <p>En esta política, "nosotras," "nos" y "nuestro" se refieren a Costa Launch LLC y Natascha Costa de forma conjunta, según el contexto. "Tú" se refiere a cualquier persona que visite getsmartcooking.com o nos contacte por cualquiera de los canales listados en el sitio.</p>
+      </section>
+
+      <section id="que-recopilamos">
+        <h2><span class="num">02</span>Qué recopilamos</h2>
+        <p>Recopilamos solo lo que necesitamos para entender quién visita el sitio y para continuar la conversación cuando nos escribes. Aquí está la lista completa.</p>
+
+        <h3>Información que nos das directamente</h3>
+        <ul>
+          <li>Tu nombre y número de teléfono cuando inicias una conversación por WhatsApp con nosotras</li>
+          <li>El contenido de los mensajes que nos envíes por WhatsApp, SMS o correo electrónico</li>
+          <li>Cualquier otra cosa que decidas compartir durante nuestras conversaciones (preferencias de cocina, ubicación para envío o demostración, disponibilidad, etc.)</li>
+        </ul>
+
+        <h3>Información recopilada automáticamente</h3>
+        <ul>
+          <li>Tipo de navegador, sistema operativo, tipo de dispositivo y tamaño de pantalla</li>
+          <li>Dirección IP y ubicación aproximada (a nivel ciudad/estado)</li>
+          <li>Páginas que visitaste, tiempo en cada una, y cómo llegaste al sitio (referente)</li>
+          <li>Qué botones clickeaste, con marca de tiempo</li>
+        </ul>
+
+        <p>No te pedimos, almacenamos ni procesamos información de pago, números de tarjeta de crédito, números de seguro social ni identificaciones gubernamentales en este sitio. Cualquier compra de una Thermomix ocurre directamente a través de los sistemas oficiales de Vorwerk.</p>
+      </section>
+
+      <section id="como-usamos">
+        <h2><span class="num">03</span>Cómo la usamos</h2>
+        <p>Usamos la información que recopilamos para estos propósitos, y solo estos:</p>
+        <ul>
+          <li>Responder a tus mensajes y resolver tus dudas sobre la Thermomix</li>
+          <li>Guiarte en la compra o en unirte al programa de Asesora, si nos lo pides</li>
+          <li>Enviarte información de seguimiento que tú solicitaste (recetas, detalles de financiamiento, fechas de demostración)</li>
+          <li>Entender cómo se usa el sitio para poder mejorarlo</li>
+          <li>Medir qué anuncios y contenidos de verdad traen visitas</li>
+          <li>Cumplir con obligaciones legales</li>
+        </ul>
+        <p><strong>No vendemos tu información personal.</strong> No la compartimos con nadie fuera de los servicios de terceros listados en la sección 5, todos los cuales procesan datos por cuenta nuestra bajo sus propias políticas de privacidad.</p>
+      </section>
+
+      <section id="cookies">
+        <h2><span class="num">04</span>Cookies y rastreo</h2>
+        <p>Usamos una cantidad pequeña de cookies y píxeles de rastreo para entender cómo se usa el sitio y medir el desempeño de los anuncios.</p>
+
+        <h3>Analítica</h3>
+        <p>Usamos <strong>Google Analytics 4</strong> para contar visitas, ver qué páginas reciben atención y entender de dónde viene el tráfico. Google Analytics puede colocar cookies en tu navegador. Los datos son agregados y no te identifican personalmente para nosotros.</p>
+
+        <h3>Publicidad</h3>
+        <p>Usamos el <strong>Meta Pixel</strong> (Facebook/Instagram) para medir qué anuncios traen visitas al sitio y mostrarte anuncios relevantes en las plataformas de Meta después de tu visita. El pixel coloca cookies controladas por Meta.</p>
+
+        <h3>Funcional</h3>
+        <p>El sitio carga tipografías desde Google Fonts. Google puede registrar información básica de la solicitud cuando se entregan las tipografías. No controlamos esto directamente.</p>
+
+        <h3>Cómo desactivarlas</h3>
+        <p>Puedes rechazar o bloquear cookies en la configuración de tu navegador. También puedes optar por no participar en Google Analytics instalando el <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener">Complemento de inhabilitación de Google Analytics</a>. Puedes ajustar tus preferencias de anuncios de Meta en la configuración de tu cuenta de Facebook o Instagram.</p>
+      </section>
+
+      <section id="terceros">
+        <h2><span class="num">05</span>Servicios de terceros</h2>
+        <p>Usamos los siguientes servicios para operar el sitio y nuestras comunicaciones. Cada uno opera bajo su propia política de privacidad. Te recomendamos leerlas.</p>
+        <ul>
+          <li><strong>Meta Platforms</strong> (WhatsApp, Facebook, Instagram, Meta Pixel): comunicaciones y publicidad. <a href="https://www.facebook.com/privacy/policy/" target="_blank" rel="noopener">Política de privacidad</a></li>
+          <li><strong>Google</strong> (Analytics, Fonts): analítica del sitio y tipografía. <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Política de privacidad</a></li>
+          <li><strong>Anthropic</strong> (Claude AI): tecnología detrás de Bella, la asistente que maneja la primera parte de las conversaciones por WhatsApp. <a href="https://www.anthropic.com/legal/privacy" target="_blank" rel="noopener">Política de privacidad</a></li>
+          <li><strong>Nuestro proveedor de hosting y CRM</strong>: guardan mensajes, datos de contacto y notas de nuestras conversaciones</li>
+          <li><strong>Vorwerk / Thermomix USA</strong>: cuando decides comprar una Thermomix, la transacción es directamente con Vorwerk. <a href="https://www.thermomix.com/pages/privacy-policy" target="_blank" rel="noopener">Política de privacidad</a></li>
+        </ul>
+        <p>Solo compartimos con estos servicios lo que necesitan para hacer su trabajo, y están contractualmente obligados a mantener tus datos seguros.</p>
+      </section>
+
+      <section id="whatsapp">
+        <h2><span class="num">06</span>WhatsApp y Bella</h2>
+        <p>La forma principal en que conversamos contigo es WhatsApp. Cuando haces clic en cualquier botón "Habla conmigo" en este sitio, se te lleva a WhatsApp con un mensaje precargado. Al enviar ese mensaje, empiezas una conversación con nosotras.</p>
+
+        <div class="callout">
+          <strong>Importante sobre Bella</strong>
+          <p>La primera parte de tu conversación por WhatsApp la maneja Bella, una asistente con inteligencia artificial basada en el modelo Claude de Anthropic. Bella lee tus mensajes, genera respuestas, y puede guardar el historial de la conversación para que podamos retomar donde lo dejaste. Una persona real (Natascha) revisa las conversaciones y entra personalmente cuando es relevante.</p>
+        </div>
+
+        <p>Bella existe para darte respuestas rápidas y precisas. No hace compras en tu nombre, no pide información sensible (contraseñas, datos de pago, identificaciones), y te conecta con un humano cuando lo pidas.</p>
+        <p>El contenido completo de los mensajes de WhatsApp pasa por la infraestructura de WhatsApp Business de Meta, que tiene cifrado de extremo a extremo entre tú y nuestro número. Guardamos una copia de la conversación para contexto y seguimiento.</p>
+      </section>
+
+      <section id="retencion">
+        <h2><span class="num">07</span>Cuánto tiempo guardamos los datos</h2>
+        <ul>
+          <li><strong>Conversaciones de WhatsApp y datos de contacto:</strong> se guardan mientras seas lead o cliente activa, más hasta 24 meses después de tu última interacción, salvo que pidas que las borremos antes</li>
+          <li><strong>Datos de analítica (Google Analytics):</strong> agregados por hasta 14 meses, luego se borran automáticamente</li>
+          <li><strong>Datos del Meta Pixel:</strong> retenidos por Meta según su política, normalmente hasta 180 días para atribución de anuncios</li>
+          <li><strong>Correos:</strong> se guardan mientras sean relevantes, se borran si lo pides</li>
+        </ul>
+        <p>Si nos pides que borremos tus datos, lo haremos dentro de 30 días, excepto cuando la ley nos obligue a conservar ciertos registros.</p>
+      </section>
+
+      <section id="derechos">
+        <h2><span class="num">08</span>Tus derechos</h2>
+        <p>Según donde vivas, tienes ciertos derechos sobre tu información personal.</p>
+
+        <h3>Si vives en Estados Unidos</h3>
+        <p>Bajo leyes como la California Consumer Privacy Act (CCPA) y leyes estatales similares (Virginia, Colorado, Connecticut, Utah, entre otras), tienes derecho a:</p>
+        <ul>
+          <li>Saber qué información personal hemos recopilado sobre ti</li>
+          <li>Pedir una copia de esa información</li>
+          <li>Pedir que corrijamos información inexacta</li>
+          <li>Pedir que borremos tu información</li>
+          <li>Optar por no participar en la venta o compartición de información personal (no vendemos, pero igual puedes optar por no participar en cookies de analítica y publicidad)</li>
+          <li>No ser discriminada por ejercer cualquiera de estos derechos</li>
+        </ul>
+
+        <h3>Si vives en la Unión Europea o el Reino Unido</h3>
+        <p>Bajo el GDPR y el GDPR del Reino Unido, tienes los derechos anteriores más el derecho a la portabilidad de datos, a oponerte al tratamiento, y a presentar una queja ante tu autoridad local de protección de datos.</p>
+
+        <h3>Cómo ejercer estos derechos</h3>
+        <p>Envía un correo a <a href="mailto:support@getsmartcooking.com">support@getsmartcooking.com</a> con tu solicitud. Verificaremos tu identidad (normalmente confirmando un detalle de una conversación previa) y responderemos dentro de 30 días.</p>
+      </section>
+
+      <section id="menores">
+        <h2><span class="num">09</span>Privacidad de menores</h2>
+        <p>Este sitio está dirigido a adultos mayores de 18 años. No recopilamos a sabiendas información de personas menores de 18 años. Si crees que un menor ha compartido información con nosotras, escribe a <a href="mailto:support@getsmartcooking.com">support@getsmartcooking.com</a> y la borraremos.</p>
+      </section>
+
+      <section id="cambios">
+        <h2><span class="num">10</span>Cambios a esta política</h2>
+        <p>Podemos actualizar esta política de vez en cuando, conforme cambien nuestras prácticas o evolucionen las leyes. Cuando lo hagamos, actualizaremos la "fecha de vigencia" al inicio de esta página. Los cambios importantes se destacarán en la página principal por al menos 14 días.</p>
+        <p>Si ya estás conversando con nosotras por WhatsApp, te enviaremos un mensaje rápido cuando algo importante cambie. No te vamos a sorprender.</p>
+      </section>
+
+      <section id="contacto" style="margin-bottom: 0;">
+        <div class="contact-box">
+          <h2>¿Preguntas sobre tu <em>privacidad?</em></h2>
+          <p>Escríbenos. Una persona real lee cada mensaje y responde en menos de 2 días hábiles.</p>
+          <a href="mailto:support@getsmartcooking.com" class="contact-email">support@getsmartcooking.com</a>
+        </div>
+      </section>
+
+    </article>
+
+  </main>
+
+  <footer>
+    <div class="foot-inner">
+      <span>© 2026 Costa Launch LLC, operando como Get Smart Cooking. Asesora Independiente de Thermomix.</span>
+      <div>
+        <a href="/es/">Inicio</a>
+        <a href="/es/privacy">Privacidad</a>
+        <a href="/es/terms">Términos</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

@@ -1,204 +1,135 @@
-# Blog do getsmartcooking.com — Setup Completo
+# Get Smart Cooking, site completo
 
-Estrutura de arquivos pronta para o blog multilíngue (EN/ES/PT) em Astro + TinaCMS + Cloudflare Pages.
+Costa Launch LLC, operando como Get Smart Cooking.
+Build: 15 de maio de 2026.
 
-## Estratégia de conteúdo
-
-**Posts são NATIVOS de cada idioma, não traduções.**
-
-Cada idioma ataca seu próprio mercado nos EUA:
-- **PT (us-pt)**: brasileiras que migraram para os EUA
-- **ES (us-es)**: hispanos nos EUA (nativos ou imigrantes)
-- **EN (us-en)**: americanas nativas
-
-Posts equivalentes em idiomas diferentes compartilham um `translationKey`
-(para hreflang funcionar), mas o conteúdo é escrito do zero em cada idioma,
-com keyword research nativa, exemplos culturais relevantes e tom local.
-
-Posts que só fazem sentido em um idioma (ex: "Thermomix para brasileiras no Texas")
-ficam sem `translationKey`. Isso é correto e suportado pelo sistema.
-
-## Stack
-
-- **Framework**: Astro 5 (SSG)
-- **CMS**: TinaCMS (edição visual + commit no Git)
-- **Host**: Cloudflare Pages
-- **Conteúdo**: MDX no repositório, organizado por idioma
-- **Idiomas**: EN, ES, PT (directory-based localization)
-
-## Passo a passo de instalação
-
-### 1. Pré-requisitos
-
-No projeto Astro atual do getsmartcooking.com, garanta que está rodando Astro 5+. Se ainda não tiver:
-
-```bash
-npm install astro@latest
-```
-
-Instale as integrações necessárias:
-
-```bash
-npm install @astrojs/mdx @astrojs/sitemap
-npm install -D @tinacms/cli tinacms
-```
-
-### 2. Copiar os arquivos
-
-Copie os arquivos desta pasta para a raiz do seu projeto, mantendo a estrutura:
+## Estrutura
 
 ```
-seu-projeto/
-├── astro.config.mjs        ← substituir (ou mesclar com existente)
-├── tsconfig.json            ← mesclar (alias ~/* é crítico)
-├── tina/
-│   └── config.ts            ← novo
-├── src/
-│   ├── content.config.ts    ← novo (ou mesclar)
-│   ├── components/
-│   │   ├── seo/             ← nova pasta com 5 schemas JSON-LD
-│   │   ├── CTAWhatsApp.astro
-│   │   ├── RelatedPosts.astro
-│   │   └── FAQ.astro
-│   ├── layouts/
-│   │   ├── BlogPost.astro
-│   │   └── BlogList.astro
-│   ├── pages/[lang]/blog/   ← rotas novas (não conflita com /[lang]/index.astro)
-│   ├── content/blog/        ← posts MDX organizados por idioma
-│   └── lib/
-│       ├── i18n.ts
-│       └── utils.ts
-└── public/
-    └── robots.txt           ← atualizar
+/.htaccess               Configuração Apache (URL rewrite, HTTPS, cache, segurança)
+/robots.txt              Instruções para bots de busca
+/sitemap.xml             Mapa do site para Google e Bing
+/index.html              Redirector silencioso (detecta idioma do navegador)
+/README.md               Este arquivo
+/en/index.html           Landing em inglês
+/en/privacy.html         Política de privacidade
+/en/terms.html           Termos de uso
+/es/index.html           Landing em espanhol
+/es/privacy.html
+/es/terms.html
+/pt/index.html           Landing em português brasileiro
+/pt/privacy.html
+/pt/terms.html
 ```
 
-### 3. Atualizar package.json
+URLs públicas finais:
+- `getsmartcooking.com` redireciona para `/en/`, `/es/` ou `/pt/` conforme navegador
+- `getsmartcooking.com/en/`, `/es/`, `/pt/` levam direto à landing daquele idioma
+- `getsmartcooking.com/en/privacy`, `/es/privacy`, `/pt/privacy`
+- `getsmartcooking.com/en/terms`, `/es/terms`, `/pt/terms`
 
-Adicione os scripts:
+## Como publicar (Cloudflare + cPanel)
 
-```json
-{
-  "scripts": {
-    "dev": "tinacms dev -c \"astro dev\"",
-    "build": "tinacms build && astro build",
-    "preview": "astro preview"
-  }
-}
-```
+### Passo 1, subir os arquivos no cPanel
 
-### 4. Rodar localmente
+1. Entre no cPanel, abra o File Manager
+2. Vá pra pasta `public_html/`
+3. Faça upload de TODOS os arquivos do zip, **incluindo o `.htaccess`** (que é arquivo oculto, pode estar invisível por padrão, ative "Show Hidden Files" no File Manager)
+4. Confirme que a estrutura ficou:
+   - `public_html/index.html`
+   - `public_html/.htaccess`
+   - `public_html/robots.txt`
+   - `public_html/sitemap.xml`
+   - `public_html/en/`, `public_html/es/`, `public_html/pt/` com seus respectivos arquivos
 
-```bash
-npm run dev
-```
+### Passo 2, configurar Cloudflare corretamente
 
-Acesse:
-- Site: `http://localhost:4321/`
-- Blog PT: `http://localhost:4321/pt/blog/`
-- TinaCMS admin: `http://localhost:4321/admin/index.html`
+Esses toggles no Cloudflare são CRÍTICOS pra evitar loop de redirect:
 
-### 5. Configurar TinaCMS Cloud
+1. **SSL/TLS, Overview**: configurar pra **"Full"** ou **"Full (strict)"**. Nunca "Flexible", isso causa loop infinito com o `.htaccess` que força HTTPS.
+2. **SSL/TLS, Edge Certificates**: ativar **"Always Use HTTPS"** (Cloudflare faz o redirect HTTP→HTTPS na borda, mais rápido que Apache)
+3. **SSL/TLS, Edge Certificates**: ativar **"Automatic HTTPS Rewrites"**
+4. **Speed, Optimization**: ativar **"Auto Minify"** para HTML, CSS, JS
+5. **Speed, Optimization**: ativar **"Brotli"** (compressão melhor que Gzip)
+6. **Caching, Configuration**: deixar em **"Standard"** (default)
 
-1. Acesse https://app.tina.io/signup
-2. Crie um projeto novo apontando para o repositório GitHub
-3. Pegue o `clientId` e `token` que aparecem
-4. Adicione no Cloudflare Pages como variáveis de ambiente:
-   - `NEXT_PUBLIC_TINA_CLIENT_ID`
-   - `TINA_TOKEN`
-5. Configure o branch de produção (geralmente `main`)
+### Passo 3, testar
 
-### 6. Deploy no Cloudflare Pages
+Abra essas URLs em sequência e confirme o comportamento:
 
-No dashboard do Cloudflare Pages:
-- **Build command**: `npm run build`
-- **Build output directory**: `dist`
-- **Node version**: 20 ou superior (env var `NODE_VERSION=20`)
-- **Variáveis de ambiente**: as do passo 5
+- `getsmartcooking.com` → deve redirecionar para `/en/`, `/es/` ou `/pt/` (depende do seu navegador)
+- `getsmartcooking.com/en/` → landing em inglês
+- `getsmartcooking.com/en/privacy` → privacy em inglês (sem `.html` na URL)
+- `getsmartcooking.com/en/privacy.html` → deve redirecionar pra `/en/privacy` (URL limpa)
+- `getsmartcooking.com/es/` → landing em espanhol
+- `getsmartcooking.com/pt/` → landing em português
 
-### 7. Submeter sitemap
+Se der **erro 500** ao acessar qualquer URL: o `.htaccess` não foi compatível com a versão do Apache do seu host. Me chama e eu adapto.
 
-Após o primeiro deploy:
-- Google Search Console: verificar domínio inteiro (`getsmartcooking.com`) via DNS
-- Submeter sitemap: `https://getsmartcooking.com/sitemap-index.xml`
-- Bing Webmaster Tools: mesmo URL (alimenta ChatGPT, Copilot, Perplexity)
+Se **HTTPS estiver em loop infinito**: o modo SSL do Cloudflare está em "Flexible". Mude pra "Full".
 
-## Estrutura de um post
+Se URLs com `.html` no final continuarem funcionando ao invés de redirecionar: limpe o cache do Cloudflare em **"Caching, Configuration, Purge Everything"**.
 
-Cada post é um arquivo MDX em `src/content/blog/[idioma]/[slug].mdx`.
+### Passo 4, submeter sitemap ao Google
 
-**Importante**: o slug usa a keyword NATIVA do idioma, não tradução do inglês.
+Depois que o site estiver no ar:
 
-### Exemplo PT (para brasileiras nos EUA):
+1. Acesse [Google Search Console](https://search.google.com/search-console)
+2. Adicione a propriedade `getsmartcooking.com`
+3. Verifique a propriedade (Cloudflare facilita com DNS record automático)
+4. Em "Sitemaps", submeta `https://getsmartcooking.com/sitemap.xml`
 
-```mdx
----
-title: "Thermomix vale a pena nos Estados Unidos? Uma brasileira responde"
-description: "Sou brasileira, moro no Texas..."
-slug: "thermomix-vale-a-pena-nos-estados-unidos"
-focusKeyword: "thermomix vale a pena nos estados unidos"
-targetMarket: "us-pt"
-publishDate: 2026-05-16
-author: "Natascha Costa"
-heroImage: "/uploads/foto.jpg"
-heroImageAlt: "Descrição da foto"
-cluster: "pricing"
-tags: ["thermomix", "brasileiras nos eua"]
-translationKey: "thermomix-worth-it-usa"  # opcional
----
+Em 3 a 7 dias o Google indexa as 9 páginas dos 3 idiomas separadamente.
 
-import CTAWhatsApp from '~/components/CTAWhatsApp.astro';
+## Antes do go-live, ainda falta
 
-Conteúdo nativo em PT...
+### 1. IDs de tracking
 
-<CTAWhatsApp variant="inline" message="..." locale="pt" />
-```
+Em `en/index.html`, `es/index.html` e `pt/index.html`, procure por:
 
-### Exemplo EN (para americanas nativas):
+- `YOUR_PIXEL_ID` → substituir pelo ID do Meta Pixel
+- `G-XXXXXXX` → substituir pelo ID do GA4 (2 ocorrências em cada arquivo)
 
-```mdx
----
-title: "Is the Thermomix worth it in 2026? An honest USA review"
-description: "After 2 years using Thermomix daily..."
-slug: "is-thermomix-worth-it-usa"
-focusKeyword: "is thermomix worth it"
-targetMarket: "us-en"
-publishDate: 2026-05-16
-author: "Natascha Costa"
-heroImage: "/uploads/foto-en.jpg"
-heroImageAlt: "Description"
-cluster: "pricing"
-tags: ["thermomix", "review", "worth it"]
-translationKey: "thermomix-worth-it-usa"  # MESMA chave do post PT
----
+Os scripts estão comentados com `<!-- ... -->`. Descomente o bloco quando colocar os IDs.
 
-Conteúdo nativo em EN, atacando keywords diferentes do post PT...
-```
+### 2. Ativos visuais
 
-Os dois posts compartilham `translationKey: "thermomix-worth-it-usa"`, então
-o hreflang vai ligar eles automaticamente. Mas o conteúdo, slug, keyword foco
-e até as FAQs são totalmente diferentes, cada um otimizado para seu mercado.
+Em cada `index.html` dos 3 idiomas, procure pelos comentários `REPLACE:`:
 
-## Workflow recomendado de produção
+- 3 vídeos verticais 9:16 (sorvete, pão, risoto)
+- Foto da Natascha cozinhando com a Thermomix (4:5 vertical)
+- Opcional, vídeo de fundo do hero
 
-1. **Pesquisa de keywords** por idioma (Ahrefs/SEMrush filtrado por país+idioma)
-2. **Brief separado** por idioma com keyword foco, intent, perguntas reais
-3. **IA gera draft NATIVO** em cada idioma (prompts separados, não tradução)
-4. **Natascha revisa** cada draft (esse passo é não negociável para SEO)
-5. **Publica via TinaCMS** com translationKey igual quando há equivalência
-6. **Monitora GSC** por country e por language section
+Os placeholders atuais funcionam, mas a página real precisa desses assets pra performance de conversão.
 
-## Próximos passos depois da instalação
+### 3. Revisão jurídica recomendada
 
-1. Validar que tudo compila e o TinaCMS abre o admin
-2. O post de exemplo em PT já está incluso, ver `/pt/blog/thermomix-vale-a-pena-nos-estados-unidos/`
-3. Configurar Tina Cloud
-4. Primeiro deploy no Cloudflare
-5. Iniciar keyword research em PT/ES/EN para primeiros 10 posts
-6. Treinar Natascha no TinaCMS (15 minutos é suficiente)
+Antes de subir Meta Ads acima de USD 50 por dia, vale pagar uma hora de advogado especializado em direct sales pra revisar os Terms em inglês. Custa USD 250 a USD 500. Os outros idiomas seguem a mesma lógica jurídica do inglês.
 
-## Suporte
+### 4. Atualização do ICA com a Vorwerk
 
-Documentação oficial:
-- Astro: https://docs.astro.build
-- TinaCMS: https://tina.io/docs
-- Cloudflare Pages: https://developers.cloudflare.com/pages
+A Natascha está registrada como Advisor pessoa física. O site é operado pela Costa Launch LLC. Vale comunicar à Vorwerk USA essa estrutura, por escrito, pra evitar qualquer questionamento futuro.
+
+## Identidade legal definida no site
+
+- Operador do site: Costa Launch LLC, sociedade do Texas
+- Endereço: 2001 Timberloch Place, The Woodlands, Texas 77380
+- Consultora Independente: Natascha Costa, pessoa física
+- WhatsApp: +1 832 804 5758
+- Email: support@getsmartcooking.com
+- Instagram: @nataschaflow
+
+## Tracking já implementado
+
+Cada CTA do WhatsApp dispara dois eventos:
+- Meta Pixel: evento `Contact` com parâmetros `source` (seção da página) e `lang` (idioma)
+- GA4: evento `whatsapp_click` com `cta_source` e `language`
+
+Depois de 30 dias de tráfego você terá visibilidade total de qual seção e qual idioma converte mais.
+
+## Próximos blocos do sistema, ainda não construídos
+
+- System prompt da Bella refinado pra detectar idioma e responder em PT, EN, ES
+- 3 anúncios trilíngues no Meta Ads apontando direto pra `/en/`, `/es/`, `/pt/`
+- Briefing de produção dos vídeos verticais pros cards
+- Setup de CRM e n8n conforme arquivo `06_briefing_dev_e_setup.md` do projeto

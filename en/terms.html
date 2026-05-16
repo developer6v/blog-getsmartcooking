@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Terms of Service, Get Smart Cooking</title>
+  <meta name="description" content="The terms that govern your use of getsmartcooking.com.">
+  <meta name="robots" content="index, follow">
+
+  <link rel="alternate" hreflang="en" href="https://getsmartcooking.com/en/terms">
+  <link rel="alternate" hreflang="es" href="https://getsmartcooking.com/es/terms">
+  <link rel="alternate" hreflang="pt" href="https://getsmartcooking.com/pt/terms">
+  <link rel="canonical" href="https://getsmartcooking.com/en/terms">
+
+  <!-- ====================================================== -->
+  <!-- REPLACE BEFORE PUBLISHING:                             -->
+  <!-- 1. Get Smart Cooking - personal name or LLC        -->
+  <!-- 2. 2001 Timberloch Place, The Woodlands, Texas 77380 - mailing address                -->
+  <!-- 3. Texas - US state of operation           -->
+  <!-- 4. May 15, 2026 - date you publish the terms       -->
+  <!-- ====================================================== -->
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #F5EFE6;
+      --bg-warm: #EDE4D3;
+      --paper: #FFFFFF;
+      --ink: #1A1612;
+      --ink-soft: #4A4744;
+      --ink-muted: #8B7B68;
+      --clay: #C66B3D;
+      --line: #D9CFC1;
+      --wa: #25D366;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.65;
+      font-weight: 400;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    .display {
+      font-family: 'Fraunces', Georgia, serif;
+      font-variation-settings: 'opsz' 144, 'SOFT' 50;
+      font-weight: 400;
+      letter-spacing: -0.025em;
+      line-height: 1.05;
+    }
+
+    .container {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ============ NAV ============ */
+    .nav {
+      padding: 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--line);
+      background: rgba(245,239,230,0.92);
+      backdrop-filter: blur(12px);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+    .nav-inner {
+      max-width: 1240px;
+      margin: 0 auto;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .nav-logo {
+      font-family: 'Fraunces', serif;
+      font-style: italic;
+      font-weight: 400;
+      font-size: 1.25rem;
+      color: var(--ink);
+      letter-spacing: -0.01em;
+      text-decoration: none;
+    }
+    .nav-logo span { color: var(--clay); }
+
+    .nav-right { display: flex; align-items: center; gap: 24px; }
+    .lang-toggle { display: inline-flex; align-items: center; gap: 4px; font-size: 0.78rem; letter-spacing: 0.1em; font-weight: 500; }
+    .lang-toggle a { color: var(--ink-muted); text-decoration: none; padding: 4px 6px; transition: color .2s; }
+    .lang-toggle a.active { color: var(--clay); }
+    .lang-toggle a:hover { color: var(--ink); }
+    .lang-toggle span { color: var(--ink-muted); opacity: 0.4; }
+
+    .nav-back {
+      font-size: 0.88rem;
+      color: var(--ink-soft);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: color .2s;
+    }
+    .nav-back:hover { color: var(--clay); }
+
+    /* ============ HEADER ============ */
+    .page-head {
+      padding: 80px 0 60px;
+      border-bottom: 1px solid var(--line);
+      margin-bottom: 64px;
+    }
+    .eyebrow {
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--clay);
+      margin-bottom: 20px;
+      display: block;
+    }
+    .page-head h1 {
+      font-size: clamp(2.4rem, 5vw, 3.6rem);
+      margin-bottom: 22px;
+    }
+    .page-head h1 em {
+      font-style: italic;
+      color: var(--clay);
+      font-variation-settings: 'opsz' 144, 'SOFT' 100;
+    }
+    .page-head p {
+      font-size: 1.1rem;
+      color: var(--ink-soft);
+      max-width: 60ch;
+    }
+    .effective {
+      margin-top: 28px;
+      font-size: 0.88rem;
+      color: var(--ink-muted);
+      font-family: 'Fraunces', serif;
+      font-style: italic;
+    }
+
+    /* ============ TOC ============ */
+    .toc {
+      background: var(--paper);
+      border-radius: 4px;
+      padding: 32px 36px;
+      margin-bottom: 64px;
+      box-shadow: 0 1px 0 var(--line);
+    }
+    .toc h2 {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+      margin-bottom: 18px;
+      font-weight: 500;
+    }
+    .toc ol {
+      list-style: none;
+      counter-reset: toc;
+      column-count: 2;
+      column-gap: 32px;
+    }
+    @media (max-width: 600px) { .toc ol { column-count: 1; } }
+    .toc li {
+      counter-increment: toc;
+      padding: 6px 0;
+      break-inside: avoid;
+    }
+    .toc li::before {
+      content: counter(toc, decimal-leading-zero);
+      font-family: 'Fraunces', serif;
+      font-style: italic;
+      color: var(--clay);
+      margin-right: 10px;
+      font-size: 0.85rem;
+    }
+    .toc a {
+      color: var(--ink);
+      text-decoration: none;
+      font-size: 0.95rem;
+      transition: color .2s;
+    }
+    .toc a:hover { color: var(--clay); }
+
+    /* ============ CONTENT ============ */
+    .content section {
+      margin-bottom: 64px;
+    }
+    .content h2 {
+      font-family: 'Fraunces', serif;
+      font-weight: 400;
+      font-size: 1.85rem;
+      letter-spacing: -0.015em;
+      margin-bottom: 24px;
+      padding-top: 12px;
+    }
+    .content h2 .num {
+      font-style: italic;
+      color: var(--clay);
+      margin-right: 12px;
+      font-size: 1.1rem;
+      vertical-align: 4px;
+    }
+    .content h3 {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--ink);
+      margin: 28px 0 12px;
+      letter-spacing: -0.005em;
+    }
+    .content p {
+      color: var(--ink-soft);
+      margin-bottom: 18px;
+      font-size: 1rem;
+    }
+    .content p strong { color: var(--ink); font-weight: 500; }
+    .content ul {
+      list-style: none;
+      margin: 8px 0 22px;
+    }
+    .content ul li {
+      padding: 6px 0 6px 22px;
+      position: relative;
+      color: var(--ink-soft);
+      font-size: 0.98rem;
+    }
+    .content ul li::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 16px;
+      width: 8px; height: 1px;
+      background: var(--clay);
+    }
+    .content a {
+      color: var(--clay);
+      text-decoration: underline;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 3px;
+    }
+    .content a:hover { color: var(--ink); }
+
+    .callout {
+      background: var(--bg-warm);
+      border-left: 2px solid var(--clay);
+      padding: 22px 26px;
+      margin: 24px 0;
+      border-radius: 0 4px 4px 0;
+    }
+    .callout p { margin-bottom: 0; font-size: 0.95rem; }
+    .callout strong {
+      font-family: 'Fraunces', serif;
+      font-style: italic;
+      color: var(--clay);
+      font-weight: 400;
+      font-size: 1.05rem;
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    .legal-block {
+      background: var(--paper);
+      padding: 28px 32px;
+      border-radius: 4px;
+      margin: 24px 0;
+      box-shadow: 0 1px 0 var(--line);
+    }
+    .legal-block p { margin-bottom: 12px; font-size: 0.95rem; }
+    .legal-block p:last-child { margin-bottom: 0; }
+    .legal-block-title {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--clay);
+      margin-bottom: 14px;
+      font-weight: 500;
+    }
+
+    /* ============ CONTACT BOX ============ */
+    .contact-box {
+      background: var(--ink);
+      color: #F5EFE6;
+      padding: 48px 40px;
+      border-radius: 4px;
+      margin: 64px 0;
+      text-align: center;
+    }
+    .contact-box h2 {
+      color: #F5EFE6;
+      font-family: 'Fraunces', serif;
+      font-weight: 400;
+      font-size: 1.85rem;
+      margin-bottom: 16px;
+    }
+    .contact-box h2 em { font-style: italic; color: #E89D74; }
+    .contact-box p {
+      color: rgba(245,239,230,0.75);
+      margin-bottom: 24px;
+      max-width: 48ch;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .contact-email {
+      display: inline-block;
+      padding: 14px 28px;
+      background: var(--clay);
+      color: white;
+      text-decoration: none;
+      border-radius: 999px;
+      font-weight: 500;
+      transition: background .2s ease, transform .2s ease;
+    }
+    .contact-email:hover { background: #A0522D; transform: translateY(-1px); }
+
+    /* ============ FOOTER ============ */
+    footer {
+      background: var(--ink);
+      color: rgba(245,239,230,0.65);
+      padding: 56px 24px 40px;
+      font-size: 0.88rem;
+    }
+    .foot-inner {
+      max-width: 1240px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .foot-inner a {
+      color: rgba(245,239,230,0.75);
+      text-decoration: none;
+      margin-left: 18px;
+      transition: color .2s;
+    }
+    .foot-inner a:first-child { margin-left: 0; }
+    .foot-inner a:hover { color: #E89D74; }
+  </style>
+</head>
+<body>
+
+  <!-- ============ NAV ============ -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="/en/" class="nav-logo">get smart <span>cooking</span></a>
+      <div class="nav-right">
+        <div class="lang-toggle">
+          <a href="/en/terms" class="active">EN</a>
+          <span>/</span>
+          <a href="/es/terms">ES</a>
+          <span>/</span>
+          <a href="/pt/terms">PT</a>
+        </div>
+        <a href="/en/" class="nav-back">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+          Back to home
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ============ HEADER ============ -->
+  <header class="page-head">
+    <div class="container">
+      <span class="eyebrow">Legal</span>
+      <h1 class="display">Terms of <em>Service</em></h1>
+      <p>The rules of the road for using getsmartcooking.com and talking with us. Written in plain language. Read once, you are set.</p>
+      <div class="effective">Effective date: May 15, 2026</div>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <!-- ============ TOC ============ -->
+    <nav class="toc">
+      <h2>What's in these terms</h2>
+      <ol>
+        <li><a href="#agreement">Agreement</a></li>
+        <li><a href="#who-we-are">Who we are</a></li>
+        <li><a href="#using-site">Using this site</a></li>
+        <li><a href="#whatsapp">WhatsApp and Bella</a></li>
+        <li><a href="#not-vorwerk">Not Vorwerk corporate</a></li>
+        <li><a href="#purchases">Purchases of a Thermomix</a></li>
+        <li><a href="#advisor">The Advisor program</a></li>
+        <li><a href="#earnings">Earnings disclaimer</a></li>
+        <li><a href="#ip">Intellectual property</a></li>
+        <li><a href="#third-party-links">Third-party links</a></li>
+        <li><a href="#disclaimers">Disclaimers</a></li>
+        <li><a href="#liability">Limitation of liability</a></li>
+        <li><a href="#indemnification">Indemnification</a></li>
+        <li><a href="#termination">Termination</a></li>
+        <li><a href="#governing-law">Governing law</a></li>
+        <li><a href="#changes">Changes to these terms</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ol>
+    </nav>
+
+    <!-- ============ CONTENT ============ -->
+    <article class="content">
+
+      <section id="agreement">
+        <h2><span class="num">01</span>Agreement</h2>
+        <p>By visiting getsmartcooking.com or contacting us through any channel listed on the site, you agree to these Terms of Service and to our <a href="/en/privacy">Privacy Policy</a>. If you do not agree, please do not use the site.</p>
+        <p>You must be at least 18 years old to use this site or to start a conversation with us.</p>
+      </section>
+
+      <section id="who-we-are">
+        <h2><span class="num">02</span>Who we are</h2>
+        <p>Get Smart Cooking is a website operated by <strong>Costa Launch LLC</strong>, a Texas limited liability company based at <strong>2001 Timberloch Place, The Woodlands, Texas 77380</strong>. The site supports the activities of <strong>Natascha Costa</strong>, an independent Thermomix Advisor authorized by Vorwerk USA. In these terms, "we," "us," and "our" refer to Costa Launch LLC and Natascha Costa collectively, where context allows. "You" refers to anyone using the site or our messaging channels.</p>
+      </section>
+
+      <section id="using-site">
+        <h2><span class="num">03</span>Using this site</h2>
+        <p>You may browse this site for personal, non-commercial use. When you use the site, you agree not to:</p>
+        <ul>
+          <li>Use the site or our messaging channels for any unlawful purpose</li>
+          <li>Send us spam, threats, harassment, or unsolicited commercial offers</li>
+          <li>Attempt to gain unauthorized access to the site, our infrastructure, or other users' information</li>
+          <li>Copy, scrape, or republish the content of the site without our written permission</li>
+          <li>Use bots, scrapers, or automated tools to interact with the site or our WhatsApp number</li>
+          <li>Impersonate another person, including pretending to be a Thermomix Advisor or Vorwerk employee</li>
+          <li>Submit false information when contacting us</li>
+        </ul>
+      </section>
+
+      <section id="whatsapp">
+        <h2><span class="num">04</span>WhatsApp and Bella</h2>
+        <p>When you click any "Chat with me" button, you are redirected to WhatsApp to start a conversation. You agree that:</p>
+        <ul>
+          <li>The first part of your conversation is handled by <strong>Bella</strong>, an AI assistant powered by Anthropic's Claude. Bella is not a human, even though the conversation feels conversational</li>
+          <li>A real person (Natascha) reviews conversations and joins in personally when relevant</li>
+          <li>Bella may make occasional errors. Important decisions (purchases, contracts, financial commitments) should always be confirmed with a human before acting on them</li>
+          <li>You should never share passwords, credit card numbers, social security numbers, or other sensitive credentials in the chat. Bella and our team will never ask for these</li>
+          <li>By messaging us, you consent to receive replies on WhatsApp from Bella and from our team</li>
+        </ul>
+
+        <div class="callout">
+          <strong>About AI responses</strong>
+          <p>Bella generates answers based on information we have provided, but AI systems can occasionally produce incorrect or outdated information. Always verify key details (current pricing, financing terms, program requirements) with a human team member before making a decision.</p>
+        </div>
+      </section>
+
+      <section id="not-vorwerk">
+        <h2><span class="num">05</span>Not Vorwerk corporate</h2>
+        <p>Get Smart Cooking is a website operated by Costa Launch LLC and supports the activities of Natascha Costa, an <strong>independent Thermomix Advisor</strong>. Neither Costa Launch LLC nor Natascha Costa is Vorwerk SE & Co. KG, Vorwerk USA, or any official Thermomix corporate entity. We do not speak on behalf of Vorwerk corporate communications.</p>
+        <p>"Thermomix" and "Vorwerk" are trademarks of Vorwerk SE & Co. KG. We reference these names because we are authorized to sell and represent Thermomix products in our capacity as an independent Advisor, but our website, opinions, and messaging are ours and not corporate statements.</p>
+        <p>For official corporate information, visit <a href="https://www.thermomix.com/" target="_blank" rel="noopener">thermomix.com</a>.</p>
+      </section>
+
+      <section id="purchases">
+        <h2><span class="num">06</span>Purchases of a Thermomix</h2>
+        <p>You cannot buy a Thermomix on this website. We do not process payments here. When you decide to purchase, the transaction takes place directly through Vorwerk's official ordering systems, under Vorwerk's own terms of sale, warranty, and return policies.</p>
+        <p>Pricing, financing terms, shipping, returns, and warranty are set by Vorwerk and may change without notice from us. We will share current details with you in conversation, but the binding terms are Vorwerk's at the moment you complete your purchase.</p>
+      </section>
+
+      <section id="advisor">
+        <h2><span class="num">07</span>The Advisor program</h2>
+        <p>The Thermomix Advisor program is a direct sales opportunity offered by Vorwerk, not by Get Smart Cooking. If you decide to become an Advisor, you will sign an Independent Consultant Agreement directly with Vorwerk and become bound by their Advisor policies, compensation plan, and code of conduct.</p>
+        <p>We can introduce you to the program, explain how it works, and act as your sponsor. We cannot guarantee acceptance, compensation, or any specific outcome. All requirements, fees, and earnings structures are set and may be changed by Vorwerk.</p>
+        <p>To be eligible to become an Advisor in the United States, you must be at least 18 years old and authorized to work in the US.</p>
+      </section>
+
+      <section id="earnings">
+        <h2><span class="num">08</span>Earnings disclaimer</h2>
+        <div class="legal-block">
+          <div class="legal-block-title">FTC compliance, please read carefully</div>
+          <p>Any earnings figures shared on this website, in our messages, or in our presentations are examples and are not guarantees. Becoming a Thermomix Advisor is a business opportunity, and like any business, results vary based on effort, skill, market conditions, network size, time invested, and many other factors.</p>
+          <p>The phrases "earn your Thermomix free in 90 days" and "$2K to $5K monthly" reflect what some Advisors have achieved, not what every Advisor will achieve. Many Advisors earn less, some earn more, and some earn nothing.</p>
+          <p>We do not represent that you will achieve any particular income or recover any costs you incur. Before deciding to join, review Vorwerk's official income disclosure statement and consult with a financial or legal advisor if needed.</p>
+        </div>
+      </section>
+
+      <section id="ip">
+        <h2><span class="num">09</span>Intellectual property</h2>
+        <p>All content on getsmartcooking.com (text, design, photos, videos created by us, logos, layout) is owned by us or licensed to us. You may share links to the site freely. You may not copy, modify, or republish the content without our written permission.</p>
+        <p>Third-party trademarks (Thermomix, Vorwerk, WhatsApp, Meta, Google, Anthropic, others) belong to their respective owners. Our use of these names does not imply endorsement by those companies.</p>
+      </section>
+
+      <section id="third-party-links">
+        <h2><span class="num">10</span>Third-party links</h2>
+        <p>This site contains links to third-party sites including Vorwerk, Meta, Google, and others. We do not control these sites and are not responsible for their content, policies, or practices. Visiting them is at your own discretion.</p>
+      </section>
+
+      <section id="disclaimers">
+        <h2><span class="num">11</span>Disclaimers</h2>
+        <div class="legal-block">
+          <p>THE SITE AND OUR MESSAGING ARE PROVIDED "AS IS" AND "AS AVAILABLE," WITHOUT WARRANTIES OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NON-INFRINGEMENT.</p>
+          <p>WE DO NOT WARRANT THAT THE SITE WILL BE UNINTERRUPTED, ERROR-FREE, OR FREE OF VIRUSES OR OTHER HARMFUL COMPONENTS. INFORMATION SHARED IN CONVERSATIONS MAY CONTAIN OCCASIONAL INACCURACIES, AND YOU SHOULD VERIFY KEY FACTS BEFORE ACTING ON THEM.</p>
+          <p>NOTHING ON THIS SITE CONSTITUTES PROFESSIONAL FINANCIAL, LEGAL, TAX, OR MEDICAL ADVICE. CONSULT QUALIFIED PROFESSIONALS FOR THOSE MATTERS.</p>
+        </div>
+      </section>
+
+      <section id="liability">
+        <h2><span class="num">12</span>Limitation of liability</h2>
+        <div class="legal-block">
+          <p>TO THE FULLEST EXTENT PERMITTED BY LAW, WE WILL NOT BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES, INCLUDING LOSS OF PROFITS, DATA, OR GOODWILL, ARISING FROM YOUR USE OF THE SITE OR OUR MESSAGING.</p>
+          <p>OUR TOTAL LIABILITY TO YOU FOR ANY CLAIM ARISING FROM OR RELATED TO THIS SITE WILL NOT EXCEED ONE HUNDRED US DOLLARS (USD 100) IN THE AGGREGATE.</p>
+          <p>SOME JURISDICTIONS DO NOT ALLOW THE EXCLUSION OF CERTAIN WARRANTIES OR LIMITATIONS OF LIABILITY. IN THOSE JURISDICTIONS, OUR LIABILITY IS LIMITED TO THE MAXIMUM EXTENT PERMITTED BY LAW.</p>
+        </div>
+      </section>
+
+      <section id="indemnification">
+        <h2><span class="num">13</span>Indemnification</h2>
+        <p>You agree to defend, indemnify, and hold harmless Costa Launch LLC, Natascha Costa, and their respective officers, agents, and affiliates from any claims, damages, losses, or expenses (including reasonable attorneys' fees) arising from your violation of these terms, your misuse of the site, or your violation of any law or third-party right.</p>
+      </section>
+
+      <section id="termination">
+        <h2><span class="num">14</span>Termination</h2>
+        <p>We may suspend or terminate your access to the site or our messaging channels at any time, for any reason, including violation of these terms. You may stop using the site or unsubscribe from our WhatsApp messages at any time by replying with "STOP" or by contacting us.</p>
+      </section>
+
+      <section id="governing-law">
+        <h2><span class="num">15</span>Governing law</h2>
+        <p>These terms are governed by the laws of the State of <strong>Texas</strong>, United States, without regard to its conflict of law principles. Any dispute arising from these terms or your use of the site will be brought in the state or federal courts located in Texas, and you consent to the personal jurisdiction of those courts.</p>
+        <p>If any provision of these terms is found unenforceable, the remaining provisions will continue in full effect.</p>
+      </section>
+
+      <section id="changes">
+        <h2><span class="num">16</span>Changes to these terms</h2>
+        <p>We may update these terms from time to time. When we do, we will update the "effective date" at the top of the page. Material changes will be highlighted on the home page for at least 14 days.</p>
+        <p>Your continued use of the site after changes take effect means you accept the updated terms. If you do not accept them, stop using the site.</p>
+      </section>
+
+      <section id="contact" style="margin-bottom: 0;">
+        <div class="contact-box">
+          <h2>Questions about these <em>terms?</em></h2>
+          <p>Email us. A real person reads every message and answers within 2 business days.</p>
+          <a href="mailto:support@getsmartcooking.com" class="contact-email">support@getsmartcooking.com</a>
+        </div>
+      </section>
+
+    </article>
+
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer>
+    <div class="foot-inner">
+      <span>© 2026 Costa Launch LLC, operating as Get Smart Cooking. Independent Thermomix Advisor.</span>
+      <div>
+        <a href="/en/">Home</a>
+        <a href="/privacy">Privacy</a>
+        <a href="/en/terms">Terms</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
