@@ -262,12 +262,14 @@ export default defineConfig({
     ],
   },
 
-  search: {
-    tina: {
-      indexerToken: process.env.TINA_SEARCH_TOKEN || "",
-      stopwordLanguages: ["por", "spa", "eng"],
+  ...(process.env.TINA_SEARCH_TOKEN && {
+    search: {
+      tina: {
+        indexerToken: process.env.TINA_SEARCH_TOKEN,
+        stopwordLanguages: ["por", "spa", "eng"],
+      },
+      indexBatchSize: 100,
+      maxSearchIndexFieldLength: 100,
     },
-    indexBatchSize: 100,
-    maxSearchIndexFieldLength: 100,
-  },
+  }),
 });
