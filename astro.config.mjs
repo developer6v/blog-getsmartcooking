@@ -6,6 +6,7 @@ const SITE = "https://getsmartcooking.com";
 
 export default defineConfig({
   site: SITE,
+  base: "/blog",
   output: "static",
   trailingSlash: "always",
 

@@ -42,7 +42,7 @@ const t = labels[locale];
 
 const breadcrumbItems = [
   { name: t.home, url: `/${locale}/` },
-  { name: t.blog, url: `/${locale}/blog/` },
+  { name: t.blog, url: `/blog/${locale}/` },
 ];
 
 if (cluster) {
@@ -75,7 +75,7 @@ if (cluster) {
           {
             cluster ? (
               <>
-                <a href={`/${locale}/blog/`}>{t.blog}</a>
+                <a href={`/blog/${locale}/`}>{t.blog}</a>
                 <span> / </span>
                 <span aria-current="page">{CLUSTER_LABELS[cluster][locale]}</span>
               </>
@@ -96,7 +96,7 @@ if (cluster) {
           <div class="posts-grid">
             {posts.map((post) => (
               <article class="post-card">
-                <a href={`/${locale}/blog/${post.data.slug}/`} class="post-card-link">
+                <a href={`/blog/${locale}/${post.data.slug}/`} class="post-card-link">
                   <img
                     src={post.data.heroImage}
                     alt={post.data.heroImageAlt}

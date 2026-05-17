@@ -40,7 +40,7 @@ const labels = {
       <h2 class="related-title">{labels[locale].title}</h2>
       <div class="related-grid">
         {related.map((post: any) => (
-          <a href={`/${locale}/blog/${post.data.slug}/`} class="related-card">
+          <a href={`/blog/${locale}/${post.data.slug}/`} class="related-card">
             <img
               src={post.data.heroImage}
               alt={post.data.heroImageAlt}

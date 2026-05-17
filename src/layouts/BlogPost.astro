@@ -32,7 +32,7 @@ export interface Props {
 const { frontmatter, locale } = Astro.props;
 
 const SITE = "https://getsmartcooking.com";
-const canonical = `${SITE}/${locale}/blog/${frontmatter.slug}/`;
+const canonical = `${SITE}/blog/${locale}/${frontmatter.slug}/`;
 
 const alternateLanguages = await getAlternateLanguages(
   frontmatter.translationKey,
@@ -49,7 +49,7 @@ const labels = breadcrumbLabels[locale];
 
 const breadcrumbItems = [
   { name: labels.home, url: `/${locale}/` },
-  { name: labels.blog, url: `/${locale}/blog/` },
+  { name: labels.blog, url: `/blog/${locale}/` },
   { name: frontmatter.title, url: canonical },
 ];
 
@@ -107,7 +107,7 @@ const isRecipe = frontmatter.cluster === "recipe" && frontmatter.recipeData;
         <nav class="breadcrumb" aria-label="Breadcrumb">
           <a href={`/${locale}/`}>{labels.home}</a>
           <span> / </span>
-          <a href={`/${locale}/blog/`}>{labels.blog}</a>
+          <a href={`/blog/${locale}/`}>{labels.blog}</a>
           <span> / </span>
           <span aria-current="page">{frontmatter.title}</span>
         </nav>

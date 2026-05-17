@@ -71,7 +71,7 @@ const buildBlogCollection = (
   format: "mdx" as const,
   ui: {
     router: ({ document }: { document: { _sys: { filename: string } } }) =>
-      `/${locale}/blog/${document._sys.filename}`,
+      `/blog/${locale}/${document._sys.filename}`,
   },
   fields: [
     {

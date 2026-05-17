@@ -58,7 +58,7 @@ export async function getAlternateLanguages(
         data.translationKey === translationKey && !data.draft
     );
     if (posts.length > 0) {
-      result[locale] = `/${locale}/blog/${posts[0].data.slug}/`;
+      result[locale] = `/blog/${locale}/${posts[0].data.slug}/`;
     }
   }
 
