@@ -1,4 +1,5 @@
 ---
+import { render } from "astro:content";
 import BlogPost from "~/layouts/BlogPost.astro";
 import CTAWhatsApp from "~/components/CTAWhatsApp.astro";
 import { LOCALES, getPostsByLocale, type Locale } from "~/lib/i18n";
@@ -23,7 +24,7 @@ const { lang } = Astro.params;
 const { post } = Astro.props;
 const locale = lang as Locale;
 
-const { Content } = await post.render();
+const { Content } = await render(post);
 ---
 
 <BlogPost frontmatter={post.data} locale={locale}>
